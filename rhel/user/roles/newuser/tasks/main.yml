@@ -1,0 +1,8 @@
+---
+# tasks file for new user
+- name: Create User accounts
+  user: 
+    name: "{{ item.split(':').0 }}"
+    state: "{{ item.split(':').1 }}"
+    uid: "{{ item.split(':').2 }}"
+  loop: "{{ lookup('file', 'users.conf').splitlines() }}"
